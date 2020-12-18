@@ -10,7 +10,7 @@ struct Date
 	int year;
 	int month;
 	int day;
-};
+}date;
 
 struct Book
 {
@@ -19,13 +19,12 @@ struct Book
 	float price;
 	struct Date date;
 	char publisher[60];
-	struct Book *book;
-};
+}book;
  
 void addmenu();
 void selbook();
 void delbook();
-void addbook();
+void addbook(struct Book *book);
 void ex();
 void menu();
 
@@ -53,7 +52,8 @@ void menu()
 void addmenu()
 {
 	system("cls");
-	struct addbook *book;
+//	struct addbook *book;
+	
 	char t;
 	printf("正在进入此菜单...\n");
 	sleep(1);
@@ -64,34 +64,32 @@ void addmenu()
 	fflush(stdin);
 	switch(t)
 	{
-		case '1':addbook(*book);break;
+		case '1':addbook(&book);break;
 		case '2':menu();break; 
 	};
 }
 
 void addbook(struct Book *book)
 {
+//	Book* head=(Book*)malloc(sizeof(Book));
+//	free(head);
 	
 	
 	printf("请输入书籍名字:");
 	scanf("%s",book->title);
-	putchar('\n'); 
 	printf("请输入作者名字:");
 	scanf("%s",book->author);
-	putchar('\n');
 	printf("请输入价格:");
-	scanf("%.2f",&book->price);
-	putchar('\n');
+	scanf("%f",&book->price);
 	printf("请输入出版日期：");
 	scanf("%d%d%d",&book->date.year,&book->date.month,&book->date.day);
-	putchar('\n');
 	printf("请输入出版社:");
 	scanf("%s",book->publisher);
-	putchar('\n');
-	printf("正在录入.....");
+	printf("正在录入.....\n");
 	sleep(1);
-	printf("录入成功！");
-	menu(); 
+	printf("录入成功！\n");
+	printf("\t\t\t\t\t\t选择您接下来需要进行的操作："); 
+//	fclose(fp);
 }
 
 void selbook()
