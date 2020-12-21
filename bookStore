@@ -52,8 +52,6 @@ void menu()
 void addmenu()
 {
 	system("cls");
-//	struct addbook *book;
-	
 	char t;
 	printf("正在进入此菜单...\n");
 	sleep(1);
@@ -71,10 +69,9 @@ void addmenu()
 
 void addbook(struct Book *book)
 {
-//	Book* head=(Book*)malloc(sizeof(Book));
-//	free(head);
-	
-	
+	FILE *fp=NULL;
+	fp=fopen("E://C/bkStore/books.txt","w+"); 
+	Book* head=(Book*)malloc(sizeof(Book));
 	printf("请输入书籍名字:");
 	scanf("%s",book->title);
 	printf("请输入作者名字:");
@@ -88,12 +85,26 @@ void addbook(struct Book *book)
 	printf("正在录入.....\n");
 	sleep(1);
 	printf("录入成功！\n");
-	printf("\t\t\t\t\t\t选择您接下来需要进行的操作："); 
+	fclose(fp);
+	free(head);
+	fflush(stdin);
+	int s;
+	printf("\t\t\t\t\t\t选择您接下来需要进行的操作：\n\n\n");
+	printf("\t\t\t\t\t\t[1.继续录入]\n\n\n");
+	printf("\t\t\t\t\t\t[2.返回至主菜单]\n\n\n");
+	scanf("%d",&s);
+	fflush(stdin);
+	if(s==1)
+	{
+		addmenu();	
+	}else
+	{
+		menu();
+	}
 //	fclose(fp);
 }
 
 void selbook()
-
 {
 	system("cls");
 	printf("查阅功能--进入成功");	
@@ -124,6 +135,6 @@ void ex()
 }
 
 int main(void)
-{ 
+{
 	menu();
 } 
