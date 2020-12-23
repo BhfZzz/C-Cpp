@@ -33,7 +33,7 @@ void menu()
 		system("cls");//清屏
 		char t;
 		printf("\n\n\n\n\n\n");
-		printf("\t\t\t\t\t\t*-------AwaMyyTs-------*\n\n\n\n\n"); 
+		printf("\t\t\t\t\t\t*-------AwaMyYTs-------*\n\n\n\n\n"); 
 		printf("\t\t\t\t\t\t[------1.查阅书籍------]\n\n\n");
 		printf("\t\t\t\t\t\t[------2.录入书籍------]\n\n\n");
 		printf("\t\t\t\t\t\t[------3.删除书籍------]\n\n\n");
@@ -69,19 +69,24 @@ void addmenu()
 
 void addbook(struct Book *book)
 {
-	FILE *fp=NULL;
+	FILE *fp=NULL; 
 	fp=fopen("E://C/bkStore/books.txt","w+"); 
 	Book* head=(Book*)malloc(sizeof(Book));
 	printf("请输入书籍名字:");
 	scanf("%s",book->title);
+	fprintf(fp,"%s",book->title);
 	printf("请输入作者名字:");
 	scanf("%s",book->author);
+	fprintf(fp,"%s",book->author);
 	printf("请输入价格:");
 	scanf("%f",&book->price);
+	fprintf(fp,"%f",book->price);
 	printf("请输入出版日期：");
 	scanf("%d%d%d",&book->date.year,&book->date.month,&book->date.day);
+	fprintf(fp,"%d%d%d",book->date.year,book->date.month,book->date.day);
 	printf("请输入出版社:");
 	scanf("%s",book->publisher);
+	fprintf(fp,"%s",book->publisher);
 	printf("正在录入.....\n");
 	sleep(1);
 	printf("录入成功！\n");
